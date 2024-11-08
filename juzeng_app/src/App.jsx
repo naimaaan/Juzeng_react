@@ -1,11 +1,11 @@
 // src/App.jsx
-import React from 'react';
-import { Routes, Route, Navigate } from 'react-router-dom';
-import Login from './pages/login';
-import Calendar from './pages/calendar';
-import Staff from './pages/Staff';
-import Documents from './pages/Documents';
-import Lessons from './pages/Lessons';
+import React from "react";
+import { Routes, Route, Navigate } from "react-router-dom";
+import Login from "./pages/Login";
+import Calendar from "./pages/Calendar";
+import Staff from "./pages/Staff";
+import Documents from "./pages/Documents";
+import Lessons from "./pages/Lessons";
 
 function App() {
   return (
