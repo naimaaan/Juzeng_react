@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom'; // Assuming you use React Router for navigation
 
 const Header = ({ title }) => {
   const [userData, setUserData] = useState({ first_name: '', last_name: '', role: '' });
   const token = localStorage.getItem('access_token');
-  
+  const navigate = useNavigate(); // Use navigate for redirection after logout
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -29,7 +30,6 @@ const Header = ({ title }) => {
           first_name: response.data.first_name,
           last_name: response.data.last_name,
           role: response.data.role,
-          
         });
       } catch (error) {
         console.error('There was a problem with the fetch operation:', error);
@@ -39,6 +39,15 @@ const Header = ({ title }) => {
 
     fetchUserData();
   }, [token]);
+
+  const handleLogout = () => {
+    // Clear the token and user data
+    localStorage.removeItem('access_token');
+    setUserData({ first_name: '', last_name: '', role: '' });
+
+    // Redirect to the login page or refresh the page
+    navigate('/login'); // Change to the path where your login page is located
+  };
 
   return (
     <header className="flex items-center justify-between px-6 py-4 bg-white shadow">
@@ -60,13 +69,18 @@ const Header = ({ title }) => {
           <span className="absolute top-0 right-0 bg-blue-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">4</span>
         </button>
         <div className="flex items-center space-x-2">
-          
           <div className="header-info">
             <p className="font-semibold text-gray-800">
               {userData.first_name} {userData.last_name}
             </p>
             <p className="text-sm text-gray-500">{userData.role}</p>
           </div>
+          <button
+            onClick={handleLogout}
+            className="px-3 py-1 bg-red-500 text-white rounded hover:bg-red-600 transition-colors"
+          >
+            Logout
+          </button>
         </div>
       </div>
     </header>
