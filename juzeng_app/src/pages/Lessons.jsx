@@ -30,7 +30,7 @@ const LessonsPage = () => {
       api_url = "http://localhost:8080/api/lessons/check_parsing/";
     } else {
       console.log("Check is false");
-      api_url = "http://localhost:8080/api/lessons/";
+      api_url = "http://localhost:8080/api/lessons/parse_lessons/";
     }
     try {
       // Ensure the token is available
