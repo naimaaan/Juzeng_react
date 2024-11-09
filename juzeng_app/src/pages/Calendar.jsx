@@ -89,6 +89,7 @@ const CalendarPage = () => {
         start: new Date(event.start_time),
         end: new Date(event.end_time),
         allDay: false,
+        flow: event.flow_number,
         color: event.event_type.toLowerCase() === "meeting" ? "green" : "blue",
         type: event.event_type.toLowerCase(),
         group: event.group,
@@ -154,7 +155,7 @@ const CalendarPage = () => {
         end_time: newEventData.end,
         teacher: newEvent.teacherId,
         group: newEvent.group,
-        students_number: newEvent.studentsNumber,
+        number_of_students: newEvent.studentsNumber,
         event_link: newEvent.link,
       };
     } else {
@@ -417,6 +418,9 @@ const CalendarPage = () => {
               <>
                 <p>
                   <strong>Group:</strong> {selectedEvent.group || "N/A"}
+                </p>
+                <p>
+                  <strong>Flow:</strong> {selectedEvent.flow}.0
                 </p>
                 <p>
                   <strong>Teacher:</strong>{" "}
