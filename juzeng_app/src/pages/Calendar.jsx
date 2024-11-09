@@ -176,6 +176,7 @@ const CalendarPage = () => {
                 events={events}
                 startAccessor="start"
                 endAccessor="end"
+                defaultView="week"
                 style={{ height: "75vh" }}
                 eventPropGetter={eventStyleGetter}
                 onSelectEvent={(event) => {
@@ -204,7 +205,8 @@ const CalendarPage = () => {
               <strong>End Time:</strong> {selectedEvent.end}
             </p>
             <p>
-              <strong>Link:</strong> <a>{selectedEvent.link || "N/A"}</a>
+              <strong>Link:</strong>{" "}
+              <a href={selectedEvent.link}>{selectedEvent.link || "N/A"}</a>
             </p>
             {selectedEvent.event_type === "lesson" && (
               <>
