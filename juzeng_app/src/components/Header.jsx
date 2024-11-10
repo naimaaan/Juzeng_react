@@ -1,10 +1,15 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom'; // Assuming you use React Router for navigation
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom"; // Assuming you use React Router for navigation
+import API_URL from "../utils/config";
 
 const Header = ({ title }) => {
-  const [userData, setUserData] = useState({ first_name: '', last_name: '', role: '' });
-  const token = localStorage.getItem('access_token');
+  const [userData, setUserData] = useState({
+    first_name: "",
+    last_name: "",
+    role: "",
+  });
+  const token = localStorage.getItem("access_token");
   const navigate = useNavigate(); // Use navigate for redirection after logout
 
   useEffect(() => {
@@ -15,15 +20,15 @@ const Header = ({ title }) => {
       }
 
       try {
-        const response = await axios.get('http://localhost:8080/api/me', {
+        const response = await axios.get(`${API_URL}/me`, {
           headers: {
             Authorization: `Bearer ${token}`,
-            'Content-Type': 'application/json',
+            "Content-Type": "application/json",
           },
         });
 
         if (response.status !== 200) {
-          throw new Error('Failed to fetch user data: ' + response.statusText);
+          throw new Error("Failed to fetch user data: " + response.statusText);
         }
 
         setUserData({
@@ -32,7 +37,7 @@ const Header = ({ title }) => {
           role: response.data.role,
         });
       } catch (error) {
-        console.error('There was a problem with the fetch operation:', error);
+        console.error("There was a problem with the fetch operation:", error);
         alert(`Failed to fetch user data: ${error.message}`);
       }
     };
@@ -42,11 +47,11 @@ const Header = ({ title }) => {
 
   const handleLogout = () => {
     // Clear the token and user data
-    localStorage.removeItem('access_token');
-    setUserData({ first_name: '', last_name: '', role: '' });
+    localStorage.removeItem("access_token");
+    setUserData({ first_name: "", last_name: "", role: "" });
 
     // Redirect to the login page or refresh the page
-    navigate('/login'); // Change to the path where your login page is located
+    navigate("/login"); // Change to the path where your login page is located
   };
 
   return (
@@ -62,11 +67,15 @@ const Header = ({ title }) => {
         </div>
         <button className="relative text-gray-600 hover:text-blue-500">
           <i className="fas fa-envelope"></i>
-          <span className="absolute top-0 right-0 bg-blue-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">6</span>
+          <span className="absolute top-0 right-0 bg-blue-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+            6
+          </span>
         </button>
         <button className="relative text-gray-600 hover:text-blue-500">
           <i className="fas fa-bell"></i>
-          <span className="absolute top-0 right-0 bg-blue-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">4</span>
+          <span className="absolute top-0 right-0 bg-blue-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+            4
+          </span>
         </button>
         <div className="flex items-center space-x-2">
           <div className="header-info">

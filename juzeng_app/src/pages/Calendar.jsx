@@ -6,6 +6,7 @@ import Header from "../components/Header";
 import Sidebar from "../components/Sidebar";
 import dayjs from "dayjs";
 import moment from "moment";
+import API_URL from "../utils/config";
 
 const localizer = momentLocalizer(moment);
 
@@ -40,14 +41,11 @@ const CalendarPage = () => {
 
     setLoading(true);
     try {
-      const response = await axios.get(
-        "http://localhost:8080/api/users?role=teacher",
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      const response = await axios.get(`${API_URL}/users?role=teacher`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
       // console.log(response.data);
 
       const fetchedTeachers = response.data.map((teacher) => ({
@@ -74,7 +72,7 @@ const CalendarPage = () => {
 
     setLoading(true);
     try {
-      const response = await axios.get("http://localhost:8080/api/events/", {
+      const response = await axios.get(`${API_URL}/events/`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -168,7 +166,7 @@ const CalendarPage = () => {
     }
     console.log(JSON.stringify(eventData));
     try {
-      await axios.post(`http://localhost:8080/api/${api_url}/`, eventData, {
+      await axios.post(`${API_URL}/${api_url}/`, eventData, {
         headers: { Authorization: `Bearer ${token}` },
       });
     } catch (error) {

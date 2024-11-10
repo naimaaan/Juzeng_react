@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Header from "../components/Header";
 import Sidebar from "../components/Sidebar";
+import API_URL from "../utils/config";
 
 const StaffPage = () => {
   const [staff, setStaff] = useState([]);
@@ -21,17 +22,17 @@ const StaffPage = () => {
       console.error("No access token found");
       return;
     }
-  
+
     setLoading(true);
     try {
-      const response = await axios.get("http://localhost:8080/api/users/", {
+      const response = await axios.get(`${API_URL}/users/`, {
         headers: {
           Authorization: `Bearer ${token}`,
           "Content-Type": "application/json",
           // Removed Cache-Control, Pragma, and Expires
         },
       });
-  
+
       console.log("Response received:", response.data);
       setStaff(response.data);
     } catch (error) {
@@ -41,10 +42,6 @@ const StaffPage = () => {
       setLoading(false);
     }
   };
-  
-  
-  
-  
 
   useEffect(() => {
     if (token) {
@@ -57,17 +54,14 @@ const StaffPage = () => {
       "Are you sure you want to delete this user?"
     );
     if (!confirmDelete) return;
-  
+
     try {
-      const response = await axios.delete(
-        `http://localhost:8080/api/users/${userId}/`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-  
+      const response = await axios.delete(`${API_URL}/users/${userId}/`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
       if (response.status === 204) {
         // Instead of directly updating state, re-fetch data to ensure consistency
         await fetchUserData();
@@ -80,28 +74,28 @@ const StaffPage = () => {
       alert(`Failed to delete user: ${error.message}`);
     }
   };
-  
 
   const handleAddUser = async () => {
     try {
-      const response = await axios.post(
-        "http://localhost:8080/api/users/",
-        newUser,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-            "Content-Type": "application/json",
-          },
-        }
-      );
-  
+      const response = await axios.post(`${API_URL}/users/`, newUser, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      });
+
       console.log("Response from adding user:", response.data);
-  
+
       if (response.status === 201) {
         // Brief delay before re-fetching to ensure data persistence
-        setTimeout(fetchUserData, 200);  // Delay by 200ms to allow backend to update
-        
-        setNewUser({ first_name: "", last_name: "", email: "", role: "teacher" });
+        setTimeout(fetchUserData, 200); // Delay by 200ms to allow backend to update
+
+        setNewUser({
+          first_name: "",
+          last_name: "",
+          email: "",
+          role: "teacher",
+        });
         setIsModalOpen(false);
         alert("User added successfully!");
       } else {
@@ -109,10 +103,11 @@ const StaffPage = () => {
       }
     } catch (error) {
       console.error("Error adding user:", error);
-      alert(`Failed to add user: ${error.response?.data?.detail || error.message}`);
+      alert(
+        `Failed to add user: ${error.response?.data?.detail || error.message}`
+      );
     }
   };
-  
 
   const closeModal = () => {
     setIsModalOpen(false);
