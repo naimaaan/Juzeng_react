@@ -35,7 +35,7 @@ const Login = () => {
       if (role === "superadmin" || role === "supervisor") {
         window.location.href = "/calendar";
       } else if (role === "teacher" || role === "curator") {
-        window.location.href = "/index";
+        window.location.href = "/calendar";
       }
     } catch (err) {
       if (err.response && err.response.data) {
