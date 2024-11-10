@@ -25,6 +25,7 @@ const CalendarPage = () => {
     studentsNumber: 0,
     teacherId: null,
     type: "lesson",
+    participants: [],
     link: "",
     start: new Date(), // Default to the current date and time
     end: new Date(new Date().getTime() + 60 * 60 * 1000), // Default to 1 hour later
@@ -162,6 +163,7 @@ const CalendarPage = () => {
         end_time: newEventData.end,
         name: newEvent.name,
         event_link: newEvent.link,
+        participants: newEvent.participants,
       };
     }
     console.log(JSON.stringify(eventData));
@@ -307,6 +309,26 @@ const CalendarPage = () => {
                   }}
                   className="w-full mb-3 p-2 border border-gray-300 rounded"
                 />
+                <select
+                  multiple
+                  value={newEvent.participants || []} // Ensure it handles an array
+                  onChange={(e) => {
+                    const selectedOptions = Array.from(
+                      e.target.selectedOptions
+                    ).map((option) => option.value);
+                    setNewEvent((prev) => ({
+                      ...prev,
+                      participants: selectedOptions,
+                    })); // Update participants
+                  }}
+                  className="w-full mb-3 p-2 border border-gray-300 rounded"
+                >
+                  {teachers.map((teacher) => (
+                    <option key={teacher.id} value={teacher.id}>
+                      {teacher.name}
+                    </option>
+                  ))}
+                </select>
               </>
             )}
             <input
