@@ -98,7 +98,7 @@ const CalendarPage = () => {
       }));
 
       setEvents(fetchedEvents);
-      fetchTeachers(); // Fetch teachers again to update the list
+      if (role === "supervisor" || role === "superadmin") fetchTeachers(); // Fetch teachers again to update the list
     } catch (error) {
       console.error("Error fetching events:", error);
       alert("Failed to load events.");

@@ -47,7 +47,7 @@ const Header = ({ title }) => {
 
   const handleLogout = () => {
     // Clear the token and user data
-    localStorage.removeItem("access_token");
+    localStorage.clear();
     setUserData({ first_name: "", last_name: "", role: "" });
 
     // Redirect to the login page or refresh the page
