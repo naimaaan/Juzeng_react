@@ -3,6 +3,7 @@ import Header from "../components/Header";
 import Sidebar from "../components/Sidebar";
 import axios from "axios";
 import api from "../assets/api";
+import API_URL from "../utils/config";
 
 const LessonsPage = () => {
   const [inputValue, setInputValue] = useState(""); // Tracks textarea value
@@ -24,13 +25,13 @@ const LessonsPage = () => {
 
   // Handles the Check button click
   const handleCheckClick = async (check) => {
-    let api_url = "http://localhost:8080/api/lessons/check_parsing/";
+    let api_url = `${API_URL}/lessons/check_parsing/`;
     if (check === true) {
       console.log("Check is true");
-      api_url = "http://localhost:8080/api/lessons/check_parsing/";
+      api_url = `${API_URL}/lessons/check_parsing/`;
     } else {
       console.log("Check is false");
-      api_url = "http://localhost:8080/api/lessons/";
+      api_url = `${API_URL}/lessons/parse_lessons/`;
     }
     try {
       // Ensure the token is available

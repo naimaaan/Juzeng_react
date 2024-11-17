@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Header from "../components/Header";
 import Sidebar from "../components/Sidebar";
+import API_URL from "../utils/config";
 
 const StaffPage = () => {
   const [staff, setStaff] = useState([]);
@@ -25,7 +26,7 @@ const StaffPage = () => {
 
     setLoading(true);
     try {
-      const response = await axios.get("http://localhost:8080/api/users/", {
+      const response = await axios.get(`${API_URL}/users/`, {
         headers: {
           Authorization: `Bearer ${token}`,
           "Content-Type": "application/json",
@@ -56,6 +57,7 @@ const StaffPage = () => {
     if (!confirmDelete) return;
 
     try {
+<<<<<<< HEAD
       const response = await axios.delete(
         `http://localhost:8080/api/users/${userId}/`,
         {
@@ -64,6 +66,13 @@ const StaffPage = () => {
           },
         }
       );
+=======
+      const response = await axios.delete(`${API_URL}/users/${userId}/`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+>>>>>>> a3dea6c8f6e00d8f66d617f8d7e9f43bc7e572cb
 
       if (response.status === 204) {
         // Instead of directly updating state, re-fetch data to ensure consistency
@@ -80,6 +89,7 @@ const StaffPage = () => {
 
   const handleAddUser = async () => {
     try {
+<<<<<<< HEAD
       const response = await axios.post(
         "http://localhost:8080/api/users/",
         newUser,
@@ -90,6 +100,14 @@ const StaffPage = () => {
           },
         }
       );
+=======
+      const response = await axios.post(`${API_URL}/users/`, newUser, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      });
+>>>>>>> a3dea6c8f6e00d8f66d617f8d7e9f43bc7e572cb
 
       console.log("Response from adding user:", response.data);
 
@@ -174,12 +192,12 @@ const StaffPage = () => {
                         <td className="p-3 border-b">{member.email}</td>
                         <td className="p-3 border-b">{member.role}</td>
                         <td className="p-3 border-b">
-                          <button className="text-blue-500 hover:text-blue-700">
+                          <button className="text-blue-500 bg-white border border-blue-500 hover:bg-blue-500 hover:text-white rounded px-3 py-1 transition">
                             Edit
                           </button>
                           <button
                             onClick={() => handleDelete(member.id)}
-                            className="text-red-500 hover:text-red-700 ml-3"
+                            className="text-red-500 bg-white border border-red-500 hover:bg-red-500 hover:text-white rounded px-3 py-1 transition ml-3"
                           >
                             Delete
                           </button>
