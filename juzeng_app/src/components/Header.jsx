@@ -62,16 +62,16 @@ const Header = ({ title }) => {
           <input
             type="text"
             placeholder="Search here..."
-            className="px-4 py-2 border rounded-lg text-sm text-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="px-4 py-2 border rounded-lg text-sm text-gray-600 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
         </div>
-        <button className="relative text-gray-600 hover:text-blue-500">
+        <button className="relative text-gray-600 bg-white hover:text-blue-500">
           <i className="fas fa-envelope"></i>
           <span className="absolute top-0 right-0 bg-blue-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
             6
           </span>
         </button>
-        <button className="relative text-gray-600 hover:text-blue-500">
+        <button className="relative text-gray-600 bg-white hover:text-blue-500">
           <i className="fas fa-bell"></i>
           <span className="absolute top-0 right-0 bg-blue-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
             4

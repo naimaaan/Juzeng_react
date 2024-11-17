@@ -167,12 +167,12 @@ const StaffPage = () => {
                         <td className="p-3 border-b">{member.email}</td>
                         <td className="p-3 border-b">{member.role}</td>
                         <td className="p-3 border-b">
-                          <button className="text-blue-500 hover:text-blue-700">
+                          <button className="text-blue-500 bg-white border border-blue-500 hover:bg-blue-500 hover:text-white rounded px-3 py-1 transition">
                             Edit
                           </button>
                           <button
                             onClick={() => handleDelete(member.id)}
-                            className="text-red-500 hover:text-red-700 ml-3"
+                            className="text-red-500 bg-white border border-red-500 hover:bg-red-500 hover:text-white rounded px-3 py-1 transition ml-3"
                           >
                             Delete
                           </button>

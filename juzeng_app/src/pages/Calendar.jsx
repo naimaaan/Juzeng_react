@@ -198,9 +198,6 @@ const CalendarPage = () => {
           <div className="flex items-center justify-between mb-4">
             <div>
               <h2 className="text-2xl font-semibold text-gray-800">Calendar</h2>
-              <p className="text-gray-500">
-                Your events for today and upcoming days
-              </p>
             </div>
           </div>
 
@@ -444,9 +441,8 @@ const CalendarPage = () => {
                 </p>
                 <p>
                   <strong>Teacher:</strong>{" "}
-                  {`${selectedEvent.teacher_first_name || "N/A"} ${
-                    selectedEvent.teacher_last_name || "N/A"
-                  }`}
+                  {`${selectedEvent.teacher_first_name || "N/A"} ${selectedEvent.teacher_last_name || "N/A"
+                    }`}
                 </p>
               </>
             )}
