@@ -1,9 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-<<<<<<< HEAD
-=======
 import API_URL from "../utils/config";
->>>>>>> a3dea6c8f6e00d8f66d617f8d7e9f43bc7e572cb
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -19,25 +16,12 @@ const Login = () => {
     };
 
     try {
-<<<<<<< HEAD
-      const response = await axios.post(
-        "http://localhost:8080/api/token/",
-        payload,
-        {
-          headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-          },
-        }
-      );
-=======
       const response = await axios.post(`${API_URL}/token/`, payload, {
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json",
         },
       });
->>>>>>> a3dea6c8f6e00d8f66d617f8d7e9f43bc7e572cb
 
       // Assuming token response structure
       const { access, refresh, role } = response.data;
@@ -51,11 +35,7 @@ const Login = () => {
       if (role === "superadmin" || role === "supervisor") {
         window.location.href = "/calendar";
       } else if (role === "teacher" || role === "curator") {
-<<<<<<< HEAD
-        window.location.href = "/index";
-=======
         window.location.href = "/calendar";
->>>>>>> a3dea6c8f6e00d8f66d617f8d7e9f43bc7e572cb
       }
     } catch (err) {
       if (err.response && err.response.data) {
@@ -124,7 +104,10 @@ const Login = () => {
             <div className="row d-flex justify-between mt-4 mb-2">
               <div className="mb-3">
                 <label className="inline-flex items-center">
-                  <input type="checkbox" className="form-checkbox" />
+                  <input
+                    type="checkbox"
+                    className="form-checkbox text-white bg-white border-white"
+                  />
                   <span className="ml-2 text-gray-700">
                     Remember my preference
                   </span>

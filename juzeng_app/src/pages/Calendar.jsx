@@ -239,7 +239,7 @@ const CalendarPage = () => {
                 setAddEventType(eventType);
                 setNewEvent((prev) => ({ ...prev, type: eventType }));
               }}
-              className="w-full mb-3 p-2 border border-gray-300 rounded"
+              className="w-full mb-3 p-2 border border-gray-300 rounded bg-white text-black"
             >
               <option value="" disabled>
                 Event type
@@ -255,7 +255,7 @@ const CalendarPage = () => {
                     const teacherId = e.target.value;
                     setNewEvent((prev) => ({ ...prev, teacherId }));
                   }}
-                  className="w-full mb-3 p-2 border border-gray-300 rounded"
+                  className="w-full mb-3 p-2 border border-gray-300 rounded bg-white text-black"
                 >
                   <option value="" disabled>
                     Select a teacher
@@ -277,7 +277,7 @@ const CalendarPage = () => {
                       prev ? { ...prev, group } : null
                     ); // Update preview group name
                   }}
-                  className="w-full mb-3 p-2 border border-gray-300 rounded"
+                  className="w-full mb-3 p-2 border border-gray-300 rounded bg-white text-black"
                 />
                 <input
                   type="text"
@@ -287,7 +287,7 @@ const CalendarPage = () => {
                     const studentsNumber = e.target.value;
                     setNewEvent((prev) => ({ ...prev, studentsNumber }));
                   }}
-                  className="w-full mb-3 p-2 border border-gray-300 rounded"
+                  className="w-full mb-3 p-2 border border-gray-300 rounded bg-white text-black"
                 />
               </>
             )}
@@ -304,7 +304,7 @@ const CalendarPage = () => {
                       prev ? { ...prev, name } : null
                     ); // Optionally update preview
                   }}
-                  className="w-full mb-3 p-2 border border-gray-300 rounded"
+                  className="w-full mb-3 p-2 border border-gray-300 rounded bg-white text-black"
                 />
                 <select
                   multiple
@@ -318,7 +318,7 @@ const CalendarPage = () => {
                       participants: selectedOptions,
                     })); // Update participants
                   }}
-                  className="w-full mb-3 p-2 border border-gray-300 rounded"
+                  className="w-full mb-3 p-2 border border-gray-300 rounded bg-white text-black"
                 >
                   {teachers.map((teacher) => (
                     <option key={teacher.id} value={teacher.id}>
@@ -336,7 +336,7 @@ const CalendarPage = () => {
                 setNewEvent((prev) => ({ ...prev, link }));
                 setPreviewEvent((prev) => (prev ? { ...prev, link } : null));
               }}
-              className="w-full mb-3 p-2 border border-gray-300 rounded"
+              className="w-full mb-3 p-2 border border-gray-300 rounded bg-white text-black"
               value={newEvent.link}
             />
 
@@ -358,7 +358,7 @@ const CalendarPage = () => {
                       : { ...newEvent, start, color: "gray" }
                   ); // Update preview start time
                 }}
-                className="w-full p-2 border border-gray-300 rounded"
+                className="w-full p-2 border border-gray-300 rounded bg-white text-black"
               />
             </label>
             <label className="block mb-2">
@@ -379,7 +379,7 @@ const CalendarPage = () => {
                       : { ...newEvent, end, color: "gray" }
                   ); // Update preview end time
                 }}
-                className="w-full p-2 border border-gray-300 rounded"
+                className="w-full p-2 border border-gray-300 rounded bg-white text-black"
               />
             </label>
             <div className="flex justify-end space-x-2 mt-3">
@@ -441,8 +441,9 @@ const CalendarPage = () => {
                 </p>
                 <p>
                   <strong>Teacher:</strong>{" "}
-                  {`${selectedEvent.teacher_first_name || "N/A"} ${selectedEvent.teacher_last_name || "N/A"
-                    }`}
+                  {`${selectedEvent.teacher_first_name || "N/A"} ${
+                    selectedEvent.teacher_last_name || "N/A"
+                  }`}
                 </p>
               </>
             )}

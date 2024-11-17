@@ -57,22 +57,11 @@ const StaffPage = () => {
     if (!confirmDelete) return;
 
     try {
-<<<<<<< HEAD
-      const response = await axios.delete(
-        `http://localhost:8080/api/users/${userId}/`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-=======
       const response = await axios.delete(`${API_URL}/users/${userId}/`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
->>>>>>> a3dea6c8f6e00d8f66d617f8d7e9f43bc7e572cb
 
       if (response.status === 204) {
         // Instead of directly updating state, re-fetch data to ensure consistency
@@ -89,25 +78,12 @@ const StaffPage = () => {
 
   const handleAddUser = async () => {
     try {
-<<<<<<< HEAD
-      const response = await axios.post(
-        "http://localhost:8080/api/users/",
-        newUser,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-            "Content-Type": "application/json",
-          },
-        }
-      );
-=======
       const response = await axios.post(`${API_URL}/users/`, newUser, {
         headers: {
           Authorization: `Bearer ${token}`,
           "Content-Type": "application/json",
         },
       });
->>>>>>> a3dea6c8f6e00d8f66d617f8d7e9f43bc7e572cb
 
       console.log("Response from adding user:", response.data);
 
@@ -233,7 +209,7 @@ const StaffPage = () => {
                     onChange={(e) =>
                       setNewUser({ ...newUser, first_name: e.target.value })
                     }
-                    className="w-full p-2 mb-3 border rounded"
+                    className="w-full p-2 mb-3 border rounded bg-white text-black"
                   />
                   <input
                     type="text"
@@ -242,7 +218,7 @@ const StaffPage = () => {
                     onChange={(e) =>
                       setNewUser({ ...newUser, last_name: e.target.value })
                     }
-                    className="w-full p-2 mb-3 border rounded"
+                    className="w-full p-2 mb-3 border rounded bg-white text-black"
                   />
                   <input
                     type="email"
@@ -251,7 +227,7 @@ const StaffPage = () => {
                     onChange={(e) =>
                       setNewUser({ ...newUser, email: e.target.value })
                     }
-                    className="w-full p-2 mb-3 border rounded"
+                    className="w-full p-2 mb-3 border rounded bg-white text-black"
                   />
                   <select
                     value={newUser.role}
@@ -261,7 +237,7 @@ const StaffPage = () => {
                         role: e.target.value.toLowerCase(),
                       })
                     }
-                    className="w-full p-2 mb-3 border rounded"
+                    className="w-full p-2 mb-3 border rounded bg-white text-black"
                   >
                     <option value="teacher">Teacher</option>
                     <option value="curator">Curator</option>
@@ -272,7 +248,7 @@ const StaffPage = () => {
                   <div className="flex justify-end space-x-3">
                     <button
                       onClick={() => setIsModalOpen(false)}
-                      className="px-4 py-2 bg-gray-300 text-gray-700 rounded"
+                      className="px-4 py-2 bg-gray-300 text-gray-700 rounded bg-white text-black"
                     >
                       Cancel
                     </button>

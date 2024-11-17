@@ -1,10 +1,7 @@
 import React from "react";
 import logo from "/public/images/juzenglogo.jpg";
-<<<<<<< HEAD
-=======
 
 const role = localStorage.getItem("role");
->>>>>>> a3dea6c8f6e00d8f66d617f8d7e9f43bc7e572cb
 
 const Sidebar = () => {
   const role = localStorage.getItem("role");
@@ -26,29 +23,7 @@ const Sidebar = () => {
               <span>Dashboard</span>
             </a>
           </li>
-          {(role === "superadmin" || role === "supervisor") && (
-            <>
-              <li>
-                <a
-                  href="/staff"
-                  className="flex items-center space-x-3 text-gray-700 hover:text-blue-500 transition-colors"
-                >
-                  <i className="fas fa-users"></i>
-                  <span>Staff</span>
-                </a>
-              </li>
 
-              <li>
-                <a
-                  href="/lessons"
-                  className="flex items-center space-x-3 text-gray-700 hover:text-blue-500 transition-colors"
-                >
-                  <i className="fas fa-book"></i>
-                  <span>Lesson Links</span>
-                </a>
-              </li>
-            </>
-          )}
           <li>
             <a
               href="/documents"
@@ -58,8 +33,6 @@ const Sidebar = () => {
               <span>Documents</span>
             </a>
           </li>
-<<<<<<< HEAD
-=======
           {(role === "superadmin" || role === "supervisor") && (
             <>
               <li>
@@ -82,7 +55,6 @@ const Sidebar = () => {
               </li>
             </>
           )}
->>>>>>> a3dea6c8f6e00d8f66d617f8d7e9f43bc7e572cb
         </ul>
       </nav>
       <button className="mt-auto px-4 py-3 bg-blue-500 text-white font-semibold rounded-lg shadow-md hover:bg-blue-600 transition-colors">
