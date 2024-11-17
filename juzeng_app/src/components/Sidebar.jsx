@@ -1,7 +1,8 @@
-import React from 'react';
-import logo from '/public/images/juzenglogo.jpg';
+import React from "react";
+import logo from "/public/images/juzenglogo.jpg";
 
 const Sidebar = () => {
+  const role = localStorage.getItem("role");
   return (
     <aside className="w-64 bg-white p-6 shadow-lg flex flex-col">
       <div className="flex items-center justify-center mb-8">
@@ -12,27 +13,44 @@ const Sidebar = () => {
       <nav className="flex-1 space-y-4 text-gray-700">
         <ul className="space-y-4">
           <li>
-            <a href="/calendar" className="flex items-center space-x-3 text-gray-700 hover:text-blue-500 transition-colors">
+            <a
+              href="/calendar"
+              className="flex items-center space-x-3 text-gray-700 hover:text-blue-500 transition-colors"
+            >
               <i className="fas fa-tachometer-alt"></i>
               <span>Dashboard</span>
             </a>
           </li>
+          {(role === "superadmin" || role === "supervisor") && (
+            <>
+              <li>
+                <a
+                  href="/staff"
+                  className="flex items-center space-x-3 text-gray-700 hover:text-blue-500 transition-colors"
+                >
+                  <i className="fas fa-users"></i>
+                  <span>Staff</span>
+                </a>
+              </li>
+
+              <li>
+                <a
+                  href="/lessons"
+                  className="flex items-center space-x-3 text-gray-700 hover:text-blue-500 transition-colors"
+                >
+                  <i className="fas fa-book"></i>
+                  <span>Lesson Links</span>
+                </a>
+              </li>
+            </>
+          )}
           <li>
-            <a href="/staff" className="flex items-center space-x-3 text-gray-700 hover:text-blue-500 transition-colors">
-              <i className="fas fa-users"></i>
-              <span>Staff</span>
-            </a>
-          </li>
-          <li>
-            <a href="/documents" className="flex items-center space-x-3 text-gray-700 hover:text-blue-500 transition-colors">
+            <a
+              href="/documents"
+              className="flex items-center space-x-3 text-gray-700 hover:text-blue-500 transition-colors"
+            >
               <i className="fas fa-file-alt"></i>
               <span>Documents</span>
-            </a>
-          </li>
-          <li>
-            <a href="/lessons" className="flex items-center space-x-3 text-gray-700 hover:text-blue-500 transition-colors">
-              <i className="fas fa-book"></i>
-              <span>Lesson Links</span>
             </a>
           </li>
         </ul>

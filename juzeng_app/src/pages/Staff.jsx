@@ -15,13 +15,14 @@ const StaffPage = () => {
   });
 
   const token = localStorage.getItem("access_token");
+  const role = localStorage.getItem("role");
 
   const fetchUserData = async () => {
     if (!token) {
       console.error("No access token found");
       return;
     }
-  
+
     setLoading(true);
     try {
       const response = await axios.get("http://localhost:8080/api/users/", {
@@ -31,7 +32,7 @@ const StaffPage = () => {
           // Removed Cache-Control, Pragma, and Expires
         },
       });
-  
+
       console.log("Response received:", response.data);
       setStaff(response.data);
     } catch (error) {
@@ -41,10 +42,6 @@ const StaffPage = () => {
       setLoading(false);
     }
   };
-  
-  
-  
-  
 
   useEffect(() => {
     if (token) {
@@ -57,7 +54,7 @@ const StaffPage = () => {
       "Are you sure you want to delete this user?"
     );
     if (!confirmDelete) return;
-  
+
     try {
       const response = await axios.delete(
         `http://localhost:8080/api/users/${userId}/`,
@@ -67,7 +64,7 @@ const StaffPage = () => {
           },
         }
       );
-  
+
       if (response.status === 204) {
         // Instead of directly updating state, re-fetch data to ensure consistency
         await fetchUserData();
@@ -80,7 +77,6 @@ const StaffPage = () => {
       alert(`Failed to delete user: ${error.message}`);
     }
   };
-  
 
   const handleAddUser = async () => {
     try {
@@ -94,14 +90,19 @@ const StaffPage = () => {
           },
         }
       );
-  
+
       console.log("Response from adding user:", response.data);
-  
+
       if (response.status === 201) {
         // Brief delay before re-fetching to ensure data persistence
-        setTimeout(fetchUserData, 200);  // Delay by 200ms to allow backend to update
-        
-        setNewUser({ first_name: "", last_name: "", email: "", role: "teacher" });
+        setTimeout(fetchUserData, 200); // Delay by 200ms to allow backend to update
+
+        setNewUser({
+          first_name: "",
+          last_name: "",
+          email: "",
+          role: "teacher",
+        });
         setIsModalOpen(false);
         alert("User added successfully!");
       } else {
@@ -109,10 +110,11 @@ const StaffPage = () => {
       }
     } catch (error) {
       console.error("Error adding user:", error);
-      alert(`Failed to add user: ${error.response?.data?.detail || error.message}`);
+      alert(
+        `Failed to add user: ${error.response?.data?.detail || error.message}`
+      );
     }
   };
-  
 
   const closeModal = () => {
     setIsModalOpen(false);
@@ -245,6 +247,9 @@ const StaffPage = () => {
                   >
                     <option value="teacher">Teacher</option>
                     <option value="curator">Curator</option>
+                    {role === "superadmin" && (
+                      <option value="supervisor">Supervisor</option>
+                    )}
                   </select>
                   <div className="flex justify-end space-x-3">
                     <button
